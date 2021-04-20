@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script type="text/javascript">
+    // `1
+    var  printHelloWorld= function (){
+        console.log("Hello world");
+    }
+    function  printer(func){
+        func();
+    }
+    printHelloWorld(printer);
+
+    // 2
+    var person = {
+        name:"sunil",
+        age :24,
+        getName : function (){
+            return this.name;
+        }
+    };
+
+    // 3
+    var vehicleName = "Toyota";
+    var printVehicleName = function (){
+        console.log(this.vehicleName)
+    }
+    printVehicleName()
+
+    var car = {
+        vehicleName :"Nisan",
+        printName:printVehicleName,
+    }
+    car.printName()
+
+    var car2 = {
+        vehicleName :"Nisan",
+        printName:function (){
+            return function (){
+                console.log(this.vehicleName)
+
+            }
+        }
+    }
+    var ex = car2.printName()
+    ex()
+
+    var ex2 = car2.printName()
+    ex2 = ex2.bind(car2)
+    ex2()
+
+    // 5 closure
+    function taxCalculator(percentage){
+        return function (amount){
+            return amount * percentage
+        }
+    }
+
+    fetch("Insert the URL").then(function (response){
+        return response.json()
+    }).then(function (data){
+        console.log(data)
+    })
+
+    console.log(taxCalculator(.10)(200))
+</script>
+</body>
+</html>

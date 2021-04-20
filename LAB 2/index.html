@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript">
+
+
+    function getValue(callback){
+        let val = 0
+        console.log(val)
+        setTimeout(function(){
+            val = 10;
+            callback(val)
+        },1000)
+    }
+    function getNewValue(val,callback){
+        setTimeout(function(){
+            callback(val * 100)
+        },1000)
+    }
+    getValue(function (val){
+        getNewValue(val,function (newVal){
+            console.log(newVal)
+        })
+    })
+
+    // promise is an object . we need to pass a function to the constructor to create a promise. This function should include 2 parameters as resolve and reject
+    // resolve binds to the then in the promise execution
+
+
+    function getValue(){
+        let val = 0
+        return new Promise(function (resolve,reject){
+            setTimeout(function(){
+                val = 10;
+                resolve(val)
+            },1000)
+        })
+
+    }
+    function getNewValue(val){
+        return new Promise(function (resolve,reject){
+            setTimeout(function(){
+                resolve(val * 100)
+            },1000)
+        })
+
+    }
+    getValue(function (val){
+        getNewValue(val,function (newVal){
+            console.log(newVal)
+        })
+    })
+
+    getValue().then(function (val){
+        return getNewValue(val)
+    }).then(function (newValue){
+        console.log(newValue)
+    })
+    // ----------------------------------------------------------------------
+    // 3
+        const Person = {
+            organization:"Science",
+            people:["Jhon","Jane"],
+            print:function (){
+                this.people.forEach( (value)=>{
+                    console.log(value,this.organization)
+                })
+            }
+        }
+        Person.print()
+    // ----------------------------------------------------------------------
+    // 4
+
+    function getValue(){
+        let val = 0
+        return new Promise(function (resolve,reject){
+            setTimeout(function(){
+                val = 10;
+                resolve(val)
+            },1000)
+        })
+
+    }
+    function getNewValue(val){
+        return new Promise(function (resolve,reject){
+            setTimeout(function(){
+                resolve(val * 100)
+            },1000)
+        })
+
+    }
+    getValue(function (val){
+        getNewValue(val,function (newVal){
+            console.log(newVal)
+        })
+    })
+
+    function setValue(val){
+        return val*1999
+    }
+
+    async function print(){
+        let value = await getValue()
+        try {
+            value = getNewValue(value)
+        }catch (e){
+            //handle the error
+        }
+        value = setValue(value)
+        return value;
+    }
+
+    //what ever is returned from the async function, is wraped around with a promise
+
+    print().then(function (val){
+        console.log(val)
+    })
+</script>
+<body>
+
+</body>
+</html>
