@@ -1,0 +1,34 @@
+//3
+db.students.insertOne({ name:"John", dateOfBirth : "1990-01-01T00:00:00Z",subjects:["Application Framework","Computer Architecture"]})
+
+//4
+db.students.find({name:"John"})
+
+//5
+db.students.find({_id:ObjectId("6044cd657b646db9280fd692")})
+
+//6
+db.students.updateOne(
+{ name:"John" },
+{ $push:{subjects:"Distributed Computing"} }
+)
+
+//7
+db.students.insertMany([{ name:"Smith", dateOfBirth : "1990-01-15T00:00:00Z",subjects:["Application Framework","Computer Architecture"],isActive:"true"},{ name:"Jane", dateOfBirth : "1990-02-15T00:00:00Z",subjects:["Application Framework","Computer Architecture"],isActive:"false"}])
+
+
+//7
+db.students.updateOne(
+{ name:"Smith" ,isActive:"true"},
+{ $push:{subjects:"Distributed Computing"} }
+)
+
+//8
+db.students.updateOne(
+{ name:"John" },
+{ $set:{isActive:"false"} }
+)
+
+
+//9
+db.students.deleteOne({})

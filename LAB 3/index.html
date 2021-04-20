@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript">
+    // static variables are class level variables and not object level(parameters)
+    //ex:
+
+    // function vehicle(type){
+    //     this.type = type
+    //     vehicle.INSTANCE++
+    // }
+    //
+    // vehicle.INSTANCE = 0
+    //
+    // vehicle.prototype.getType = function (){
+    //     return this.type
+    // }
+    //
+    // const car = new vehicle('car')
+    // console.log(car.getType())
+    // console.log(vehicle.INSTANCE)
+
+    //lets do this in a new way
+
+
+    class vehicle{
+        static Instance = 0;
+        type;
+
+        constructor(type) {
+            vehicle.Instance++;
+            this.type = type
+        }
+        getType(){
+            return this.type
+        }
+    }
+
+    class Car extends Vehicle{
+        constructor(name,type) {
+            super(type);
+            this.name = name
+        }
+        getName(){
+            return this.name
+        }
+    }
+</script>
+
+<body>
+
+</body>
+</html>
