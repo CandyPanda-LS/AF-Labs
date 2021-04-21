@@ -1,4 +1,6 @@
 const Router = require('@koa/router')
+const {createPost,getPost,getPosts} = require("../api/posts.api")
+
 
 const router = new Router({
     prefix: '/post'
@@ -14,6 +16,6 @@ router.post('/', ctx => {
 });
 router.get('/:id', ctx => {
     const id = ctx.params.id
-    ctx.body = getPosts(id)
+    ctx.body = getPost(id)
 });
 module.exports =router;
